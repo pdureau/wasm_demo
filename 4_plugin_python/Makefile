@@ -22,9 +22,9 @@ test_2:
 	python tests/python_2.py
 
 check:
-	wasm-tools validate run/wasm_meetup_demo.wasm
-	wasm-tools component wit run/wasm_meetup_demo.wasm
-	wasm-tools print run/wasm_meetup_demo.wasm  | head
+	wasm-tools validate run/wasm_demo.wasm
+	wasm-tools component wit run/wasm_demo.wasm
+	wasm-tools print run/wasm_demo.wasm  | head
 
 versions:
 	cargo -V

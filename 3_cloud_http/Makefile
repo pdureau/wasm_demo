@@ -14,12 +14,12 @@ component:
 	cp target/wasm32-wasi/release/*.wasm run/
 
 test: 
-	wasmtime serve run/wasm_meetup_demo.wasm 
+	wasmtime serve run/wasm_demo.wasm 
 
 check:
-	wasm-tools validate run/wasm_meetup_demo.wasm
-	wasm-tools component wit run/wasm_meetup_demo.wasm
-	wasm-tools print run/wasm_meetup_demo.wasm  | head
+	wasm-tools validate run/wasm_demo.wasm
+	wasm-tools component wit run/wasm_demo.wasm
+	wasm-tools print run/wasm_demo.wasm  | head
 
 versions:
 	cargo -V

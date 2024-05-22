@@ -14,12 +14,12 @@ component:
 build: component
 
 test:
-	wasmtime run run/wasm_meetup_demo.wasm you false
+	wasmtime run run/wasm_demo.wasm you false
 
 check:
-	wasm-tools validate run/wasm_meetup_demo.wasm
-	wasm-tools component wit run/wasm_meetup_demo.wasm
-	wasm-tools print run/wasm_meetup_demo.wasm  | head
+	wasm-tools validate run/wasm_demo.wasm
+	wasm-tools component wit run/wasm_demo.wasm
+	wasm-tools print run/wasm_demo.wasm  | head
 
 versions:
 	cargo -V

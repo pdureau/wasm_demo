@@ -1,5 +1,5 @@
 [package]
-name = "wasm_meetup_demo"
+name = "wasm_demo"
 version = "0.1.0"
 edition = "2021"
 
@@ -10,7 +10,7 @@ wit-bindgen-rt = "0.25.0"
 crate-type = ["cdylib", "rlib"]
 
 [package.metadata.component]
-package = "pdureau:wasm-meetup-demo"
+package = "pdureau:wasm-demo"
 proxy=true
 
 [package.metadata.component.dependencies]

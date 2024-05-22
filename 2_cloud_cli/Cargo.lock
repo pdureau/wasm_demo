@@ -3,7 +3,7 @@
 version = 3
 
 [[package]]
-name = "wasm_meetup_demo"
+name = "wasm_demo"
 version = "0.1.0"
 dependencies = [
  "wit-bindgen-rt",
