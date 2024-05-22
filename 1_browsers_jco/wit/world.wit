@@ -1,0 +1,5 @@
+package pdureau:wasm-meetup-demo;
+
+world greeter {
+    export greet: func(name: string, up: bool) -> string;
+}
