@@ -1,0 +1,27 @@
+[package]
+name = "wasm_meetup_demo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wit-bindgen-rt = "0.25.0"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[package.metadata.component]
+package = "pdureau:wasm-meetup-demo"
+proxy=true
+
+[package.metadata.component.dependencies]
+
+[package.metadata.component.target]
+
+[profile.release]
+# https://github.com/johnthagen/min-sized-rust
+strip = true
+# opt-level = "s"
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
