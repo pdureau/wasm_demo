@@ -1,6 +1,6 @@
 install:
 	cargo binstall cargo-component
-	pip install wasmtime
+	pip install wasmtime --upgrade
 
 clean:
 	cargo clean
@@ -29,7 +29,7 @@ check:
 versions:
 	cargo -V
 	cargo component --version
-	npm list | grep jc
+	pip show wasmtime | grep Version
 
 lint:
 	rustfmt src/lib.rs
