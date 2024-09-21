@@ -10,7 +10,7 @@ component:
 	# rm -rf run/*
 	cargo component build --release
 	mkdir -p run/
-	cp target/wasm32-wasi/release/*.wasm run/
+	cp target/wasm32-wasip1/release/*.wasm run/
 
 build: component
 	npx jco transpile --no-typescript run/wasm_demo.wasm -o run/jco/
