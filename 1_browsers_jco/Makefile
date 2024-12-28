@@ -1,5 +1,9 @@
 install:
+	cargo install cargo-binstall
+	cargo binstall wasm-tools
 	cargo binstall cargo-component
+	# Too soon for wasm32-wasip2
+	# rustup target add wasm32-wasip2
 	npm install @bytecodealliance/jco
 
 clean:

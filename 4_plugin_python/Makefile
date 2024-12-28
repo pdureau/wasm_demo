@@ -1,4 +1,6 @@
 install:
+	cargo install cargo-binstall
+	cargo binstall wasm-tools
 	cargo binstall cargo-component
 	pip install wasmtime --upgrade
 

@@ -7,7 +7,7 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-wit-bindgen-rt = "0.32.*"
+wit-bindgen-rt = "0.36.*"
 
 [package.metadata.component]
 package = "pdureau:wasm-demo"
