@@ -1,4 +1,5 @@
 install:
+	curl https://wasmtime.dev/install.sh -sSf | bash
 	cargo install cargo-binstall
 	cargo binstall wasm-tools
 	cargo binstall cargo-component
@@ -28,7 +29,7 @@ check:
 versions:
 	cargo -V
 	cargo component --version
-	# pip show wasmtime | grep Version
+	gem list | grep wasmtime
 
 lint:
 	rustfmt src/lib.rs

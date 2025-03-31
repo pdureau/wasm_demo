@@ -1,4 +1,5 @@
 install:
+	curl https://wasmtime.dev/install.sh -sSf | bash
 	cargo install cargo-binstall
 	cargo binstall wasm-tools
 	cargo binstall cargo-component
