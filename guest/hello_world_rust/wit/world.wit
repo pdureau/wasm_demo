@@ -1,0 +1,9 @@
+package pdureau:wasm-demo;
+
+interface greeter {
+    greet: func(name: string, up: bool) -> string;
+}
+
+world example {
+    export greeter;
+}

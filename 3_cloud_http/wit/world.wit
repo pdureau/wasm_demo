@@ -1,6 +1,0 @@
-package pdureau:wasm-demo;
-
-world greeter {
-    include wasi:http/proxy@0.2.0;
-    export greet: func(name: string, up: bool) -> string;
-}

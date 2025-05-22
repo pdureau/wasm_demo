@@ -1,0 +1,36 @@
+[package]
+name = "wasi_http_rust"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+wit-bindgen-rt = { version = "0.41.0", features = ["bitflags"] }
+
+[lib]
+crate-type = ["cdylib"]
+
+[package.metadata.component]
+package = "pdureau:wasi-http-rust"
+proxy = true
+
+[package.metadata.component.dependencies]
+
+[package.metadata.component.target]
+
+[package.metadata.component.target.dependencies]
+"wasi:http" = { path = "wit/deps/http" }
+"wasi:clocks" = { path = "wit/deps/clocks" }
+"wasi:io" = { path = "wit/deps/io" }
+"wasi:random" = { path = "wit/deps/random" }
+"wasi:cli" = { path = "wit/deps/cli" }
+"wasi:filesystem" = { path = "wit/deps/filesystem" }
+"wasi:sockets" = { path = "wit/deps/sockets" }
+
+[profile.release]
+# https://github.com/johnthagen/min-sized-rust
+strip = true
+# opt-level = "s"
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
