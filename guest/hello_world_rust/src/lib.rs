@@ -1,13 +1,11 @@
 #[allow(warnings)]
 mod bindings;
 
-// bindings::exports::{package.namespace}::{package.id}::{interface}::Guest;
-// With: "package pdureau:wasm-demo;" & "world greeter {" 
-use bindings::exports::pdureau::wasm_demo::greeter::Guest as Greeter;
+use bindings::exports::pdureau::wasm_demo::greeter::Guest as GreeterInterface;
 
 struct Component;
 
-impl Greeter for Component {
+impl GreeterInterface for Component {
     fn greet(name: String, up: bool) -> String {
         let mut greeting = format!("Hello, {name}");
         if up {

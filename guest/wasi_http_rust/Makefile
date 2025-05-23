@@ -19,7 +19,7 @@ build:
 check:
 	wasm-tools validate ../../wasi_http_rust.wasm 
 	wasm-tools component wit ../../wasi_http_rust.wasm 
-	wasm-tools print ../../wasi_http_rust.wasm m  | head
+	wasm-tools print ../../wasi_http_rust.wasm | head
 
 versions:
 	cargo -V
@@ -27,7 +27,7 @@ versions:
 	wasmtime --version
 
 test: 
-	wasmtime serve ../../wasi_http_rust.wasm
+	wasmtime serve -Scli ../../wasi_http_rust.wasm
 
 lint:
 	rustfmt src/lib.rs

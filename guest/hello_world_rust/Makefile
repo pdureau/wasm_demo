@@ -19,7 +19,7 @@ build:
 check:
 	wasm-tools validate ../../hello_world_rust.wasm
 	wasm-tools component wit ../../hello_world_rust.wasm
-	wasm-tools print ../../hello_world_rust.wasm  | head
+	wasm-tools print ../../hello_world_rust.wasm | head
 
 versions:
 	rustc --version

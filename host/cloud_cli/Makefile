@@ -1,3 +1,5 @@
+.PHONY: install run
+
 install:
 	sudo dnf install docker
 	sudo systemctl start docker
@@ -7,7 +9,7 @@ install:
 	sudo install tmp/containerd-shim-wasmtime-v1 /usr/local/bin/
 
 run:
-	cp ../../hello_world_rust.wasm tmp/hello_world_rust.wasm
-	sudo docker build --load -t wasm_demo .
-	sudo docker run --rm --runtime=io.containerd.wasmtime.v1 wasm_demo Belgium true
+	cp ../../wasi_cli_rust.wasm tmp/wasi_cli_rust.wasm
+	sudo docker build  --no-cache --load -t wasm_demo_cli .
+	sudo docker container run --rm --runtime=io.containerd.wasmtime.v1 wasm_demo_cli Belgium true
 

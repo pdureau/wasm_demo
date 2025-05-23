@@ -1,3 +1,3 @@
 FROM scratch
-COPY --chmod=755 tmp/hello_world_rust.wasm /hello_world_rust.wasm
-ENTRYPOINT ["/hello_world_rust.wasm"]
+COPY --chmod=755 tmp/wasi_cli_rust.wasm /wasi_cli_rust.wasm
+ENTRYPOINT ["/wasi_cli_rust.wasm"]
