@@ -2,6 +2,8 @@
 
 install:
 	curl https://wasmtime.dev/install.sh -sSf | bash
+	rustup update
+	rustup target add wasm32-wasip2
 	cargo install cargo-binstall
 	cargo binstall wasm-tools
 	cargo binstall cargo-component

@@ -1,4 +1,3 @@
 /target
 /src/bindings.rs
-/node_modules/
-/run
+/wit/deps/

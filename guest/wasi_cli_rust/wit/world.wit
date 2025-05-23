@@ -5,6 +5,6 @@ interface greeter {
 }
 
 world example {
-    include wasi:cli/command@0.2.0;
+    include wasi:cli/command@0.2.5;
     export greeter;
 }
