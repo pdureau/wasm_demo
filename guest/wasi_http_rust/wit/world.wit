@@ -4,7 +4,7 @@ interface greeter {
     greet: func(name: string, up: bool) -> string;
 }
 
-world example {
+world wasi-http-rust {
     export wasi:http/incoming-handler@0.2.5;
     export greeter;
 }

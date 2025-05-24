@@ -4,7 +4,7 @@ interface greeter {
     greet: func(name: string, up: bool) -> string;
 }
 
-world example {
+world wasi-cli-rust {
     include wasi:cli/command@0.2.5;
-    export greeter;
+    import greeter;
 }

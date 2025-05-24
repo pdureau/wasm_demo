@@ -14,6 +14,12 @@ All guests have the same phony targets:
 
 ### hello_world_rust
 
+Exports a custom interface:
+
+```
+export greeter;
+```
+
 ⚠️ Compilation OK but [excessive WASI interfaces](https://github.com/rust-lang/rust/issues/133235) are causing troubles with some hosts:
 
 ```
@@ -31,17 +37,43 @@ All guests have the same phony targets:
 
 ### wasi_cli_rust (with wasi:cli/command)
 
-✅ Compilation OK.
+Imports the custom interface:
 
-Nice to have: Try composition to split the business logic from the CLI wrapper.
+```
+include wasi:cli/command;
+import greeter;
+```
+
+So we are using composing this component with `hello_world_rust` using [bytecodealliance/wac](https://github.com/bytecodealliance/wac).
+
+✅ Compilation OK. Unfortunately, the composed component is twice heavier (150kb) than a component directly built with the two interfaces (75kb).
 
 ### wasi_http_rust (with wasi:http/incoming-handler)
 
+No component composition here:
+
+```
+export wasi:http/incoming-handler;
+export greeter;
+```
+
 ✅ Compilation OK.
 
-Nice to have: Try composition to split the business logic from the HTTP wrapper.
-
 `wasi:http` 0.3 will be simplified.
+
+### Test with both wasi:cli/command and wasi:http/incoming-handler
+
+The component build OK but `wasmtime run ` doesn't import `wasi:http`:
+
+```
+wasmtime run test.wasm you false
+Error: failed to run main module `test.wasm`
+
+Caused by:
+    0: component imports instance `wasi:http/types@0.2.5`, but a matching implementation was not found in the linker
+    1: instance export `fields` has the wrong type
+    2: resource implementation is missing
+```
 
 ## Hosts
 

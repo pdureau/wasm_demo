@@ -1,20 +1,13 @@
 #[allow(warnings)]
 mod bindings;
-use bindings::exports::pdureau::wasm_demo::greeter::Guest as GreeterInterface;
+// Imports (host functions)
+use bindings::pdureau::wasm_demo::greeter;
+// Exports (guest functions)
 use bindings::exports::wasi::cli::run::Guest as RunInterface;
+
 use std::env;
 
 struct Component;
-
-impl GreeterInterface for Component {
-    fn greet(name: String, up: bool) -> String {
-        let mut greeting = format!("Hello, {name}");
-        if up {
-            greeting = greeting.to_uppercase()
-        }
-        greeting
-    }
-}
 
 impl RunInterface for Component {
     fn run() -> Result<(), ()> {
@@ -25,7 +18,7 @@ impl RunInterface for Component {
             "false" => false,
             _ => false,
         };
-        println!("{}", Component::greet(name.to_owned(), up));
+        println!("{}", greeter::greet(name, up));
         Ok(())
     }
 }

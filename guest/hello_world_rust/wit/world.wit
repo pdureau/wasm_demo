@@ -4,6 +4,6 @@ interface greeter {
     greet: func(name: string, up: bool) -> string;
 }
 
-world example {
+world hello-world-rust {
     export greeter;
 }

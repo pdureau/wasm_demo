@@ -9,6 +9,7 @@ install:
 	cargo binstall cargo-component
 	cargo install wit-deps-cli
 	wit-deps
+	cargo install wac-cli
 
 clean:
 	cargo clean
@@ -17,6 +18,7 @@ clean:
 build:
 	cargo component build --target wasm32-wasip2 --release
 	cp target/wasm32-wasip2/release/*.wasm ../../
+	wac plug ../../wasi_cli_rust.wasm --plug ../../hello_world_rust.wasm -o ../../wasi_cli_rust.wasm
 
 check:
 	wasm-tools validate ../../hello_world_rust.wasm
