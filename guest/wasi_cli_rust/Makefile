@@ -17,13 +17,13 @@ clean:
 
 build:
 	cargo component build --target wasm32-wasip2 --release
-	cp target/wasm32-wasip2/release/*.wasm ../../
+	cp target/wasm32-wasip2/release/wasi_cli_rust.wasm ../../
 	wac plug ../../wasi_cli_rust.wasm --plug ../../hello_world_rust.wasm -o ../../wasi_cli_rust.wasm
 
 check:
-	wasm-tools validate ../../hello_world_rust.wasm
-	wasm-tools component wit ../../hello_world_rust.wasm
-	wasm-tools print ../../hello_world_rust.wasm | head
+	wasm-tools validate ../../wasi_cli_rust.wasm
+	wasm-tools component wit ../../wasi_cli_rust.wasm
+	wasm-tools print ../../wasi_cli_rust.wasm | head
 
 versions:
 	rustc --version

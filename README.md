@@ -1,4 +1,4 @@
-# 2025-05-22 Status
+# 2025-05-29 Status
 
 All guests have the same phony targets:
 
@@ -28,20 +28,7 @@ Exports a custom interface:
 export greeter;
 ```
 
-⚠️ Compilation OK but [excessive WASI interfaces](https://github.com/rust-lang/rust/issues/133235) are added because of the Rust's STD and are causing troubles with some hosts:
-
-```
-  import wasi:cli/environment@0.2.0;
-  import wasi:cli/exit@0.2.0;
-  import wasi:io/error@0.2.0;
-  import wasi:io/streams@0.2.0;
-  import wasi:cli/stdin@0.2.0;
-  import wasi:cli/stdout@0.2.0;
-  import wasi:cli/stderr@0.2.0;
-  import wasi:clocks/wall-clock@0.2.0;
-  import wasi:filesystem/types@0.2.0;
-  import wasi:filesystem/preopens@0.2.0;
-```
+✅ Compilation OK but we targeted `wasm32-unknown-unknown` instead of `wasm32-wasip2` because of [excessive WASI interfaces](https://github.com/rust-lang/rust/issues/133235).
 
 ## Hosts
 
@@ -49,32 +36,21 @@ export greeter;
 
 With [bytecodealliance/jco](https://github.com/bytecodealliance/jco/)
 
-⚠️ Transpilation instead of "native" support.
+⚠️ Transpilation to a module and bindings generation instead of "native" support.
 
 Compatibility with guests:
 
-- `hello_world_rust`: ✅ OK because of those shims:
-
-```
-"@bytecodealliance/preview2-shim/cli": "./packages/preview2-shim/lib/browser/cli.js",
-"@bytecodealliance/preview2-shim/filesystem": "./packages/preview2-shim/lib/browser/filesystem.js",
-"@bytecodealliance/preview2-shim/io": "./packages/preview2-shim/lib/browser/io.js",
-"@bytecodealliance/preview2-shim/sockets": "./packages/preview2-shim/lib/browser/sockets.js"
-```
-
-That's weird because there are not exactly the same than the ones added to the guest: sockets has replaced clocks.
+- `hello_world_rust`: ✅ OK
 
 ### plugin_python
 
 With [bytecodealliance/wasmtime-py](https://github.com/bytecodealliance/wasmtime-py/)
 
+⚠️ Transpilation to a module and bindings generation instead of "native" support. Let's try to use `wasmtime.loader` instead.
+
 Compatibility with guests:
 
-- `hello_world_rust`: ❌ Doesn't work because of unexpected the extra imports:
-
-```
-not implemented: imported resources not yet supported
-```
+- `hello_world_rust`: ✅ OK
 
 ### plugin_ruby
 
@@ -82,11 +58,7 @@ With [bytecodealliance/wasmtime-rb](https://github.com/bytecodealliance/wasmtime
 
 Compatibility with guests:
 
-- `hello_world_rust`: ❌ Doesn't work because of unexpected the extra imports:
-
-```
-component imports instance `wasi:cli/environment@0.2.0`, but a matching implementation was not found in the linker
-```
+- `hello_world_rust`: ✅ OK
 
 # Use case 2: wasip2 in cloud & edge computing
 
@@ -103,7 +75,7 @@ import greeter;
 
 So we are using composing this component with `hello_world_rust` using [bytecodealliance/wac](https://github.com/bytecodealliance/wac).
 
-✅ Compilation OK. Unfortunately, the composed component is twice heavier (150kb) than a component directly built with the two interfaces (75kb).
+✅ Compilation OK. Unfortunately, the composed component is heavier (35kb + 75kb = 110kb) than a component directly built with the two interfaces (75kb).
 
 ### wasi_http_rust (with wasi:http/incoming-handler)
 
