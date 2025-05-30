@@ -3,9 +3,10 @@ install:
 	pip install wasmtime --upgrade
 
 run:
-	cp ../../hello_world_rust.wasm hello_world_rust.wasm
-	python -m wasmtime.bindgen hello_world_rust.wasm --out-dir bindings
-	python python.py
+	python -m wasmtime.bindgen ../../hello_world_rust.wasm --out-dir bindings/hello_world_rust
+	python hello_world_rust.py
+	python -m wasmtime.bindgen ../../hello_world_imports_rust.wasm --out-dir bindings/hello_world_imports_rust
+	python hello_world_imports_rust.py
 
 versions:
 	pip show wasmtime | grep Version

@@ -1,0 +1,45 @@
+<!doctype html>
+<script type="importmap">
+  {
+    "imports": {
+      "pdureau:wasm-demo/formatter": "./formatter.js"
+    }
+  }
+</script>
+<script type="module">
+  import { greeter } from "./hello_world_imports_rust.js";
+  var name_input = document.getElementById("name");
+  var up_input = document.getElementById("up");
+  var reversed_input = document.getElementById("reversed");
+  name_input.addEventListener("input", (event) => {
+    document.getElementById("placeholder").innerHTML = greeter.greet(
+      event.target.value,
+      up_input.checked,
+      reversed_input.checked,
+    );
+  });
+  up_input.addEventListener("change", (event) => {
+    document.getElementById("placeholder").innerHTML = greeter.greet(
+      name_input.value,
+      event.target.checked,
+      reversed_input.checked,
+    );
+  });
+  reversed_input.addEventListener("change", (event) => {
+    document.getElementById("placeholder").innerHTML = greeter.greet(
+      name_input.value,
+      up_input.checked,
+      event.target.checked,
+    );
+  });
+</script>
+<p>
+  <label>Name: <input id="name" /></label>
+</p>
+<p>
+  <label>Uppercase: <input id="up" type="checkbox" /></label>
+</p>
+<p>
+  <label>Reversed: <input id="reversed" type="checkbox" /></label>
+</p>
+<p id="placeholder"></p>

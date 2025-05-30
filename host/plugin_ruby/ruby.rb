@@ -7,14 +7,13 @@ engine = Wasmtime::Engine.new
 # Imports (host functions) are defined in the linker.
 linker = Wasmtime::Component::Linker.new(engine)
 
-# A compiled WebAssembly Component that is ready to be instantiated.
-# A Component can be turned into an Instance through a Linker.
+# A compiled WebAssembly Component that is ready to be instantiated through a Linker.
 # Components are safe to share across threads.
 component = Wasmtime::Component::Component.from_file(engine, "hello_world_rust.wasm")
 
 # A Store is a collection of WebAssembly instances and host-defined state.
-# Store can keep state to be re-used in Funcs.
-# All WebAssembly instances and items will be attached to and refer to a Store. 
+# All WebAssembly instances will be attached to and refer to a Store.
+# A store can keep state to be re-used in Funcs.
 # A Store is intended to be a short-lived object in a program.
 store = Wasmtime::Store.new(engine)
 

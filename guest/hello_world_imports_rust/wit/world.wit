@@ -1,0 +1,14 @@
+package pdureau:wasm-demo;
+
+interface greeter {
+    greet: func(name: string, up: bool, reversed: bool) -> string;
+}
+
+interface formatter {
+    reverse: func(name: string) -> string;
+}
+
+world hello-world-rust {
+    export greeter;
+    import formatter;
+}

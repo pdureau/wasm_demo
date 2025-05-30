@@ -1,4 +1,4 @@
-from bindings import Root
+from bindings.hello_world_imports_rust import Root, RootImports
 from wasmtime import Store
 
 # A Store is a collection of WebAssembly instances and host-defined state.
@@ -7,5 +7,12 @@ from wasmtime import Store
 # A Store is intended to be a short-lived object in a program.
 store = Store()
 
-root = Root(store)
-print(root.greeter().greet(store, "pythonistas", False))
+
+# Define host functions.
+class Host:
+    def reverse(self, string: str):
+        return string[::-1]
+
+
+root = Root(store, RootImports(Host()))
+print(root.greeter().greet(store, "pythonistas", False, True))

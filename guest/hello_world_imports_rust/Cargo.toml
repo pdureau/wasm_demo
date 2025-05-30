@@ -1,0 +1,26 @@
+[package]
+name = "hello_world_imports_rust"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+wit-bindgen-rt = { version = "0.41.0", features = ["bitflags"] }
+
+[lib]
+crate-type = ["cdylib"]
+
+[package.metadata.component]
+package = "pdureau:hello-world-rust"
+
+[package.metadata.component.dependencies]
+
+[package.metadata.component.target]
+
+[profile.release]
+# https://github.com/johnthagen/min-sized-rust
+strip = true
+# opt-level = "s"
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"

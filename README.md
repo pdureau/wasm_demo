@@ -28,7 +28,18 @@ Exports a custom interface:
 export greeter;
 ```
 
-✅ Compilation OK but we targeted `wasm32-unknown-unknown` instead of `wasm32-wasip2` because of [excessive WASI interfaces](https://github.com/rust-lang/rust/issues/133235).
+✅ Compilation OK but we targeted `wasm32-unknown-unknown` instead of `wasm32-wasip2` because of [excessive WASI interfaces](https://github.com/rust-lang/rust/issues/133235) and used
+
+### hello_world_imports_rust
+
+Exports and imports custom interfaces:
+
+```
+export greeter;
+import formatter;
+```
+
+✅ Compilation OK but we targeted `wasm32-unknown-unknown` instead of `wasm32-wasip2` because of [excessive WASI interfaces](https://github.com/rust-lang/rust/issues/133235) and used
 
 ## Hosts
 
@@ -41,6 +52,7 @@ With [bytecodealliance/jco](https://github.com/bytecodealliance/jco/)
 Compatibility with guests:
 
 - `hello_world_rust`: ✅ OK
+- `hello_world_imports_rust`: ✅ OK
 
 ### plugin_python
 
@@ -51,6 +63,7 @@ With [bytecodealliance/wasmtime-py](https://github.com/bytecodealliance/wasmtime
 Compatibility with guests:
 
 - `hello_world_rust`: ✅ OK
+- `hello_world_imports_rust`: ✅ OK
 
 ### plugin_ruby
 
@@ -58,7 +71,8 @@ With [bytecodealliance/wasmtime-rb](https://github.com/bytecodealliance/wasmtime
 
 Compatibility with guests:
 
-- `hello_world_rust`: ✅ OK
+- `hello_world_rust`: ✅ OK without transpilation and bindings 🙂
+- `hello_world_imports_rust`: ❌ [#433: Component host functions](https://github.com/bytecodealliance/wasmtime-rb/issues/433)
 
 # Use case 2: wasip2 in cloud & edge computing
 
