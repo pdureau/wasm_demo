@@ -5,6 +5,7 @@ interface greeter {
 }
 
 world wasi-cli-rust {
-    include wasi:cli/command@0.2.5;
+    export wasi:cli/run@0.2.5;
+    import wasi:cli/environment@0.2.5;
     import greeter;
 }

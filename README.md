@@ -100,7 +100,7 @@ import greeter;
 
 So we are using composing this component with `hello_world_rust` using [bytecodealliance/wac](https://github.com/bytecodealliance/wac).
 
-✅ Compilation OK. Unfortunately, the composed component is heavier (35kb + 75kb = 110kb) than a component directly built with the two interfaces (75kb).
+✅ Compilation OK. Unfortunately, the composed component is heavier (35kb + 65kb = 100kb) than a component directly built with the two interfaces (75kb).
 
 ### wasi_http_rust (with wasi:http/incoming-handler)
 
