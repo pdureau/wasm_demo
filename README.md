@@ -54,6 +54,17 @@ Compatibility with guests:
 - `hello_world_rust`: ✅ OK
 - `hello_world_imports_rust`: ✅ OK
 
+### plugin_node
+
+With [bytecodealliance/jco](https://github.com/bytecodealliance/jco/)
+
+⚠️ Transpilation to a module and bindings generation instead of "native" support.
+
+Compatibility with guests:
+
+- `hello_world_rust`: ✅ OK
+- `hello_world_imports_rust`: ✅ OK
+
 ### plugin_python
 
 With [bytecodealliance/wasmtime-py](https://github.com/bytecodealliance/wasmtime-py/)

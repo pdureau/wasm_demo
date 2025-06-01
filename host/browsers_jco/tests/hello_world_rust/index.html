@@ -1,19 +1,14 @@
 <!doctype html>
 <script type="module">
   import { greeter } from "./hello_world_rust.js";
-  var name_input = document.getElementById("name");
-  var up_input = document.getElementById("up");
-  name_input.addEventListener("input", (event) => {
-    document.getElementById("placeholder").innerHTML = greeter.greet(
-      event.target.value,
-      up_input.checked,
-    );
+  var name = document.getElementById("name");
+  var up = document.getElementById("up");
+  let out = document.getElementById("out");
+  name.addEventListener("input", (event) => {
+    out.innerHTML = greeter.greet(name.value, up.checked);
   });
-  up_input.addEventListener("change", (event) => {
-    document.getElementById("placeholder").innerHTML = greeter.greet(
-      name_input.value,
-      event.target.checked,
-    );
+  up.addEventListener("change", (event) => {
+    out.innerHTML = greeter.greet(name.value, up.checked);
   });
 </script>
 <p>
@@ -22,4 +17,4 @@
 <p>
   <label>Uppercase: <input id="up" type="checkbox" /></label>
 </p>
-<p id="placeholder"></p>
+<p id="out"></p>

@@ -8,29 +8,18 @@
 </script>
 <script type="module">
   import { greeter } from "./hello_world_imports_rust.js";
-  var name_input = document.getElementById("name");
-  var up_input = document.getElementById("up");
-  var reversed_input = document.getElementById("reversed");
-  name_input.addEventListener("input", (event) => {
-    document.getElementById("placeholder").innerHTML = greeter.greet(
-      event.target.value,
-      up_input.checked,
-      reversed_input.checked,
-    );
+  let name = document.getElementById("name");
+  let up = document.getElementById("up");
+  var rev = document.getElementById("rev");
+  let out = document.getElementById("out");
+  name.addEventListener("input", (event) => {
+    out.innerHTML = greeter.greet(name.value, up.checked, rev.checked);
   });
-  up_input.addEventListener("change", (event) => {
-    document.getElementById("placeholder").innerHTML = greeter.greet(
-      name_input.value,
-      event.target.checked,
-      reversed_input.checked,
-    );
+  up.addEventListener("change", (event) => {
+    out.innerHTML = greeter.greet(name.value, up.checked, rev.checked);
   });
-  reversed_input.addEventListener("change", (event) => {
-    document.getElementById("placeholder").innerHTML = greeter.greet(
-      name_input.value,
-      up_input.checked,
-      event.target.checked,
-    );
+  rev.addEventListener("change", (event) => {
+    out.innerHTML = greeter.greet(name.value, up.checked, rev.checked);
   });
 </script>
 <p>
@@ -40,6 +29,6 @@
   <label>Uppercase: <input id="up" type="checkbox" /></label>
 </p>
 <p>
-  <label>Reversed: <input id="reversed" type="checkbox" /></label>
+  <label>Reversed: <input id="rev" type="checkbox" /></label>
 </p>
-<p id="placeholder"></p>
+<p id="out"></p>
