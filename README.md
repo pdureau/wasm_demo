@@ -113,7 +113,7 @@ export greeter;
 
 ✅ Compilation OK.
 
-`wasi:http` 0.3 will be simplified.
+Note: `wasi:http` 0.3 will be simplified.
 
 ### Test with both wasi:cli/command and wasi:http/incoming-handler
 
@@ -146,5 +146,14 @@ Based on [containerd/runwasi](https://github.com/containerd/runwasi).
 
 Compatibility with guests:
 
-- `wasi_cli_rust`: ⚠️ Run without errors but not reachable from port 8080.
-- `wasi_http_rust`: Not applicable
+- `wasi_cli_rust`: Not applicable
+- `wasi_http_rust`: ⚠️ Run without errors but not reachable from port 8080.
+
+### spin_http
+
+Used Fermyon's Spin: https://spinframework.dev/
+
+Compatibility with guests:
+
+- `wasi_cli_rust`: Not applicable
+- `wasi_http_rust`: ✅
