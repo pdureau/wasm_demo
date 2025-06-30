@@ -133,7 +133,7 @@ Caused by:
 
 ### docker_cli (with wasi:cli/command)
 
-Based on [containerd/runwasi](https://github.com/containerd/runwasi).
+With [containerd/runwasi](https://github.com/containerd/runwasi).
 
 Compatibility with guests:
 
@@ -142,7 +142,7 @@ Compatibility with guests:
 
 ### docker_http (with wasi:http/incoming-handler)
 
-Based on [containerd/runwasi](https://github.com/containerd/runwasi).
+with [containerd/runwasi](https://github.com/containerd/runwasi).
 
 Compatibility with guests:
 
@@ -151,9 +151,22 @@ Compatibility with guests:
 
 ### spin_http
 
-Used Fermyon's Spin: https://spinframework.dev/
+With Fermyon's Spin: https://spinframework.dev/
 
 Compatibility with guests:
 
 - `wasi_cli_rust`: Not applicable
 - `wasi_http_rust`: ✅
+
+### wasmcloud_http
+
+With Wasmcloud: https://wasmcloud.com/
+
+Compatibility with guests:
+
+- `wasi_cli_rust`: Not applicable
+- `wasi_http_rust`: ❌
+
+```
+wasi:io/streams@0.2.5 instance import missing `input-stream` resource
+```
