@@ -26,6 +26,7 @@ check:
 	wasm-tools validate ../../hello_world_rust.wasm
 	wasm-tools component wit ../../hello_world_rust.wasm
 	wasm-tools print ../../hello_world_rust.wasm | head
+	wasm-tools metadata show ../../hello_world_rust.wasm
 
 versions:
 	rustc --version

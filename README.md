@@ -1,20 +1,4 @@
-# 2025-05-29 Status
-
-All guests have the same phony targets:
-
-- `make install`
-- `make clean`
-- `make build`
-- `make check`
-- `make versions`
-- `make test`
-- `make lint`
-
-All hosts have the same phony targets:
-
-- `make install`
-- `make run`
-- `make versions`
+Demos of WebAssembly WASI Preview 2
 
 # Use case 1: wasip2 as an universal plugin format
 
@@ -39,7 +23,18 @@ export greeter;
 import formatter;
 ```
 
-✅ Compilation OK but we targeted `wasm32-unknown-unknown` instead of `wasm32-wasip2` because of [excessive WASI interfaces](https://github.com/rust-lang/rust/issues/133235) and used
+✅ Compilation OK but we targeted `wasm32-unknown-unknown` instead of `wasm32-wasip2` because of [excessive WASI interfaces](https://github.com/rust-lang/rust/issues/133235)
+
+### hello_world_js
+
+Exports and imports custom interfaces:
+
+```
+export greeter;
+import formatter;
+```
+
+✅ "Compilation" OK with [bytecodealliance/ComponentizeJS](https://github.com/bytecodealliance/ComponentizeJS/). However, Wasm file weights 11MB (x333 the Rust example), including 8MB for the [StarlingMonkey](https://github.com/bytecodealliance/StarlingMonkey) engine.
 
 ## Hosts
 
@@ -53,6 +48,7 @@ Compatibility with guests:
 
 - `hello_world_rust`: ✅ OK
 - `hello_world_imports_rust`: ✅ OK
+- `hello_world_js`: Not tested
 
 ### plugin_node
 
@@ -64,6 +60,7 @@ Compatibility with guests:
 
 - `hello_world_rust`: ✅ OK
 - `hello_world_imports_rust`: ✅ OK
+- `hello_world_js`: No tested
 
 ### plugin_python
 
@@ -75,6 +72,7 @@ Compatibility with guests:
 
 - `hello_world_rust`: ✅ OK
 - `hello_world_imports_rust`: ✅ OK
+- `hello_world_js`: ✅ OK
 
 ### plugin_ruby
 
@@ -84,21 +82,23 @@ Compatibility with guests:
 
 - `hello_world_rust`: ✅ OK without transpilation and bindings 🙂
 - `hello_world_imports_rust`: ❌ [#433: Component host functions](https://github.com/bytecodealliance/wasmtime-rb/issues/433)
+- `hello_world_js`: ❌ for the same reason.
 
 # Use case 2: wasip2 in cloud & edge computing
 
 ## Guests
 
-### wasi_cli_rust (with wasi:cli/command)
+### wasi_cli_rust (with wasi:cli/run)
 
 Imports the custom interface:
 
 ```
-include wasi:cli/command;
+export wasi:cli/run;
+import wasi:cli/environment;
 import greeter;
 ```
 
-So we are using composing this component with `hello_world_rust` using [bytecodealliance/wac](https://github.com/bytecodealliance/wac).
+So we are composing this component with `hello_world_rust` using [bytecodealliance/wac](https://github.com/bytecodealliance/wac).
 
 ✅ Compilation OK. Unfortunately, the composed component is heavier (35kb + 65kb = 100kb) than a component directly built with the two interfaces (75kb).
 
@@ -117,7 +117,7 @@ Note: `wasi:http` 0.3 will be simplified.
 
 ### Test with both wasi:cli/command and wasi:http/incoming-handler
 
-The component build OK but `wasmtime run ` doesn't import `wasi:http`:
+The component is compiling without errors but `wasmtime run ` doesn't import `wasi:http`:
 
 ```
 wasmtime run test.wasm you false
@@ -170,3 +170,21 @@ Compatibility with guests:
 ```
 wasi:io/streams@0.2.5 instance import missing `input-stream` resource
 ```
+
+# Makefiles
+
+All guests have the same phony targets:
+
+- `make install`
+- `make clean`
+- `make build`
+- `make check`
+- `make versions`
+- `make test`
+- `make lint`
+
+All hosts have the same phony targets:
+
+- `make install`
+- `make run`
+- `make versions`
