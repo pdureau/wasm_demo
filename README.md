@@ -115,9 +115,9 @@ export greeter;
 
 Note: `wasi:http` 0.3 will be simplified.
 
-### Test with both wasi:cli/command and wasi:http/incoming-handler
+### Test with both wasi:cli/run and wasi:http/incoming-handler
 
-The component is compiling without errors but `wasmtime run ` doesn't import `wasi:http`:
+The component is compiling without errors but `wasmtime run ` doesn't handle `wasi:http`:
 
 ```
 wasmtime run test.wasm you false
@@ -131,7 +131,7 @@ Caused by:
 
 ## Hosts
 
-### docker_cli (with wasi:cli/command)
+### docker_cli (with wasi:cli/run)
 
 With [containerd/runwasi](https://github.com/containerd/runwasi).
 
@@ -149,7 +149,7 @@ Compatibility with guests:
 - `wasi_cli_rust`: Not applicable
 - `wasi_http_rust`: ⚠️ Run without errors but not reachable from port 8080.
 
-### spin_http
+### spin_http (with wasi:http/incoming-handler)
 
 With Fermyon's Spin: https://spinframework.dev/
 
@@ -158,7 +158,7 @@ Compatibility with guests:
 - `wasi_cli_rust`: Not applicable
 - `wasi_http_rust`: ✅
 
-### wasmcloud_http
+### wasmcloud_http (with wasi:http/incoming-handler)
 
 With Wasmcloud: https://wasmcloud.com/
 

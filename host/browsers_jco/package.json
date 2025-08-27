@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@bytecodealliance/jco": "1.11.*"
+    "@bytecodealliance/jco": "1.14.*"
   }
 }
