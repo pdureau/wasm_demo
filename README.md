@@ -66,8 +66,6 @@ Compatibility with guests:
 
 With [bytecodealliance/wasmtime-py](https://github.com/bytecodealliance/wasmtime-py/)
 
-⚠️ Transpilation to a module and bindings generation instead of "native" support. Let's try to use `wasmtime.loader` instead.
-
 Compatibility with guests:
 
 - `hello_world_rust`: ✅ OK
@@ -80,7 +78,7 @@ With [bytecodealliance/wasmtime-rb](https://github.com/bytecodealliance/wasmtime
 
 Compatibility with guests:
 
-- `hello_world_rust`: ✅ OK without transpilation and bindings 🙂
+- `hello_world_rust`: ✅ OK
 - `hello_world_imports_rust`: ❌ [#433: Component host functions](https://github.com/bytecodealliance/wasmtime-rb/issues/433)
 - `hello_world_js`: ❌ for the same reason.
 

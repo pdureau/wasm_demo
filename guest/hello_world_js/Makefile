@@ -8,7 +8,7 @@ clean:
 	echo
 
 build:
-	componentize-js -d stdio -d random -d clocks -d http --wit wit -o ../../hello_world_js.wasm hello.js
+	componentize-js -d stdio -d random -d clocks -d http -d fetch-event --wit wit -o ../../hello_world_js.wasm hello.js
 
 check:
 	wasm-tools validate ../../hello_world_js.wasm

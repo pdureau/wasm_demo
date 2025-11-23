@@ -1,18 +1,19 @@
-from bindings.hello_world_js import Root, RootImports
 from wasmtime import Store
+from wasmtime.component import Instance
+from utils import get_export_func, init_instance
 
-# A Store is a collection of WebAssembly instances and host-defined state.
-# Store can keep state to be re-used in Funcs.
-# All WebAssembly instances and items will be attached to and refer to a Store.
-# A Store is intended to be a short-lived object in a program.
+
+def reverse(store: Store, string: str) -> str:
+    return string[::-1]
+
+
+host = {"pdureau:wasm-demo/formatter": {"reverse": reverse}}
+
+# Store: Runtime state container holding instances, memories, globals, and execution context.
 store = Store()
+# Instance: Live instantiation of a component with allocated memory, globals, and callable functions
+instance: Instance = init_instance(store, "../../hello_world_js.wasm", host)
 
-
-# Define host functions.
-class Host:
-    def reverse(self, string: str):
-        return string[::-1]
-
-
-root = Root(store, RootImports(Host()))
-print(root.greeter().greet(store, "pythonistas", False, True))
+greet = get_export_func(store, instance, "pdureau:wasm-demo/greeter", "greet")
+if greet:
+    print(greet(store, "pythonistas", False, True))
